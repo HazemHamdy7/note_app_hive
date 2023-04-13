@@ -9,7 +9,13 @@ class NotesApp extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            showModalBottomSheet(
+                context: context,
+                builder: (context) {
+                  return Container();
+                });
+          },
           child: const Icon(Icons.add),
         ),
         body: const NotesViewBody(),
