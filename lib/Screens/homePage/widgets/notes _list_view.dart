@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:note_app_hive/Screens/editPage/view/edit_note_view.dart';
 import 'custom_note_item.dart';
 
 class NotesListView extends StatelessWidget {
