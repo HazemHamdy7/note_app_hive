@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
-class EditNoteView extends StatelessWidget {
-  const EditNoteView({super.key});
+import '../widget/edit_note_view_body.dart';
+
+class EditNoteViewBody extends StatelessWidget {
+  const EditNoteViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Scaffold(
+      body: EditNoteView(),
+    );
   }
 }
