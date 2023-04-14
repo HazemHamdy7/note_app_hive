@@ -1,7 +1,16 @@
-class NoteModel {
+import 'package:hive/hive.dart';
+// this is name file model (note_model)
+part 'note_model.g.dart';
+
+@HiveType(typeId: 0)
+class NoteModel extends HiveObject {
+  @HiveField(0)
   final String title;
+  @HiveField(1)
   final String subTitle;
+  @HiveField(2)
   final String data;
+  @HiveField(3)
   final int color;
 
   NoteModel(
@@ -10,3 +19,6 @@ class NoteModel {
       required this.data,
       required this.color});
 }
+
+// to generate code in terminal===>
+// flutter packages pub run build_runner build
