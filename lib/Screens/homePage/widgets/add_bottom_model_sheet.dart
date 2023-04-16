@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -15,7 +16,9 @@ class AddNoteBottomSheet extends StatelessWidget {
         child: BlocConsumer<AddNotesCubit, AddNotesState>(
           listener: (context, state) {
             if (state is AddNotesFailure) {
-              print('Failed ${state.erorrMessage}');
+              if (kDebugMode) {
+                print('Failed ${state.erorrMessage}');
+              }
               if (state is AddNotesSuccess) {
                 Navigator.pop(context);
               }
