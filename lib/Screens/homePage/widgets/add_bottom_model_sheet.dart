@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_app_hive/cubits/add_note_cubit/add_notes_cubit.dart';
+import 'package:note_app_hive/cubits/notes_cubit/notes_cubit_cubit.dart';
 import 'add_note_form.dart';
 
 class AddNoteBottomSheet extends StatelessWidget {
@@ -12,12 +13,11 @@ class AddNoteBottomSheet extends StatelessWidget {
       create: (context) => AddNotesCubit(),
       child: BlocConsumer<AddNotesCubit, AddNotesState>(
         listener: (context, state) {
-          if (state is AddNotesFailure) {
-            debugPrint('Failed ${state.erorrMessage}');
+          if (state is AddNotesFailure) {}
 
-            if (state is AddNotesSuccess) {
-              Navigator.pop(context);
-            }
+          if (state is AddNotesSuccess) {
+            BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+            Navigator.pop(context);
           }
         },
         builder: (context, state) {
@@ -25,10 +25,9 @@ class AddNoteBottomSheet extends StatelessWidget {
             absorbing: state is AddNotesLoading ? true : false,
             child: Padding(
               padding: EdgeInsets.only(
-                left: 16,
-                right: 16,
-                bottom: MediaQuery.of(context).viewInsets.bottom,
-              ),
+                  left: 16,
+                  right: 16,
+                  bottom: MediaQuery.of(context).viewInsets.bottom),
               child: const SingleChildScrollView(
                 child: AddNoteForm(),
               ),

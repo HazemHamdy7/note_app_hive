@@ -7,11 +7,11 @@ class NotesCubitInitial extends NotesCubitState {}
 
 // class NotesCubitLoading extends NotesCubitState {}
 
-// class NotesCubitSuccess extends NotesCubitState {
-//   final List<NoteModel> notes;
+class NotesCubitSuccess extends NotesCubitState {
+  // final List<NoteModel> notes;
 
-//   NotesCubitSuccess(this.notes);
-// }
+  // NotesCubitSuccess(this.notes);
+}
 
 // class NotesCubitFailure extends NotesCubitState {
 //   final String errorMessage;
