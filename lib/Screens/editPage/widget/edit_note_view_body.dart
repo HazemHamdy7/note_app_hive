@@ -3,8 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_app_hive/Screens/homePage/widgets/custom_app_bar.dart';
 import 'package:note_app_hive/cubits/notes_cubit/notes_cubit_cubit.dart';
 
+import '../../../core/constant.dart';
 import '../../../models/note_model.dart';
+import '../../colors/color_list_view.dart';
 import '../../homePage/widgets/custom_text_feild.dart';
+import 'edit_note_color_listview.dart';
 
 class EditNoteViewBody extends StatefulWidget {
   const EditNoteViewBody({super.key, required this.note});
@@ -49,6 +52,8 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
             },
             hint: widget.note.subTitle,
             maxLines: 5),
+        const SizedBox(height: 16),
+        EditNoteColorsList(note: widget.note),
       ]),
     );
   }
