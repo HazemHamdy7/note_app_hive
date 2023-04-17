@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:note_app_hive/cubits/add_note_cubit/add_notes_cubit.dart';
 
 class ColorItem extends StatelessWidget {
   const ColorItem({super.key, required this.isActive, required this.color});
@@ -13,20 +15,18 @@ class ColorItem extends StatelessWidget {
             backgroundColor: Colors.white,
             child: CircleAvatar(
               radius: 36,
-              backgroundColor: Colors.blue[400],
+              backgroundColor: color,
             ),
           )
         : CircleAvatar(
             radius: 38,
-            backgroundColor: Colors.blue[400],
+            backgroundColor: color,
           );
   }
 }
 
 class ColorsListView extends StatefulWidget {
-  const ColorsListView({
-    Key? key,
-  }) : super(key: key);
+  const ColorsListView({super.key});
 
   @override
   State<ColorsListView> createState() => _ColorsListViewState();
@@ -35,7 +35,7 @@ class ColorsListView extends StatefulWidget {
 class _ColorsListViewState extends State<ColorsListView> {
   int currentIndex = 0;
 
-  List<Color> kColors = const [
+  List<Color> colors = const [
     Color(0xffAC3931),
     Color(0xffE5D352),
     Color(0xffD9E76C),
@@ -48,18 +48,18 @@ class _ColorsListViewState extends State<ColorsListView> {
     return SizedBox(
       height: 38 * 2,
       child: ListView.builder(
-        itemCount: kColors.length,
+        itemCount: colors.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 6),
           child: GestureDetector(
             onTap: () {
-              setState(() {
-                currentIndex = index;
-              });
+              currentIndex = index;
+              BlocProvider.of<AddNotesCubit>(context).color = colors[index];
+              setState(() {});
             },
             child: ColorItem(
-              color: kColors[index],
+              color: colors[index],
               isActive: currentIndex == index,
             ),
           ),
