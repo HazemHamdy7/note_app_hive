@@ -1,28 +1,69 @@
 import 'package:flutter/material.dart';
 
 class ColorItem extends StatelessWidget {
-  const ColorItem({super.key});
+  const ColorItem({super.key, required this.isActive, required this.color});
+  final bool isActive;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      radius: 24,
-      backgroundColor: Colors.blue[400],
-    );
+    return isActive
+        ? CircleAvatar(
+            radius: 38,
+            backgroundColor: Colors.white,
+            child: CircleAvatar(
+              radius: 36,
+              backgroundColor: Colors.blue[400],
+            ),
+          )
+        : CircleAvatar(
+            radius: 38,
+            backgroundColor: Colors.blue[400],
+          );
   }
 }
 
-class ColorsListView extends StatelessWidget {
-  const ColorsListView({super.key});
+class ColorsListView extends StatefulWidget {
+  const ColorsListView({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<ColorsListView> createState() => _ColorsListViewState();
+}
+
+class _ColorsListViewState extends State<ColorsListView> {
+  int currentIndex = 0;
+
+  List<Color> kColors = const [
+    Color(0xffAC3931),
+    Color(0xffE5D352),
+    Color(0xffD9E76C),
+    Color(0xff537D8D),
+    Color(0xff482C3D),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 24 * 2,
+      height: 38 * 2,
       child: ListView.builder(
+        itemCount: kColors.length,
         scrollDirection: Axis.horizontal,
-        itemCount: 10,
-        itemBuilder: (context, index) => const ColorItem(),
+        itemBuilder: (context, index) => Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 6),
+          child: GestureDetector(
+            onTap: () {
+              setState(() {
+                currentIndex = index;
+              });
+            },
+            child: ColorItem(
+              color: kColors[index],
+              isActive: currentIndex == index,
+            ),
+          ),
+        ),
       ),
     );
   }
