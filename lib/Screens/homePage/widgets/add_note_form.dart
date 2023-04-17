@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:note_app_hive/cubits/add_note_cubit/add_notes_cubit.dart';
 import 'package:note_app_hive/models/note_model.dart';
 
+import '../../colors/color_list_view.dart';
 import 'custom_button.dart';
 import 'custom_text_feild.dart';
 
@@ -41,6 +42,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
               },
               hint: 'Content',
               maxLines: 5),
+          const ColorsListView(),
           const SizedBox(height: 32),
           BlocBuilder<AddNotesCubit, AddNotesState>(
             builder: (context, state) => CustomButton(
